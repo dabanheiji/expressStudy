@@ -9,7 +9,21 @@ npm install  //安装依赖
 npm run dev  //启动项目
 ```
 
+### 目录结构
 
+- bin
+  - www  入口文件
+- config
+  - config.js  配置文件
+- middleware 中间件文件夹
+- public 静态文件文件夹
+- routes 路由文件夹
+- utils 
+  - auth.js  token工具文件
+  - db.js  封装的数据库工具文件
+- views 模板文件夹
+- app.js express实例文件
+- package.json 依赖管理文件
 
 ### 状态码规范
 
