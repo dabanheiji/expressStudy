@@ -11,7 +11,7 @@
  Target Server Version : 50646
  File Encoding         : 65001
 
- Date: 22/02/2021 15:06:06
+ Date: 22/02/2021 16:53:20
 */
 
 SET NAMES utf8mb4;
@@ -43,20 +43,25 @@ CREATE TABLE `personnels`  (
   `personnel_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `create_time` datetime(0) NULL DEFAULT NULL,
   `job_id` int(11) NULL DEFAULT NULL,
+  `sex` int(16) NOT NULL COMMENT '0 男  1女',
   PRIMARY KEY (`personnel_id`) USING BTREE,
   INDEX `job_id`(`job_id`) USING BTREE,
   CONSTRAINT `personnels_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `jobs` (`job_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of personnels
 -- ----------------------------
-INSERT INTO `personnels` VALUES (1, '张三', '2021-02-20 14:58:24', 1);
-INSERT INTO `personnels` VALUES (2, '李四', '2021-02-22 09:09:41', 1);
-INSERT INTO `personnels` VALUES (3, '王五', '2021-02-22 09:09:58', 1);
-INSERT INTO `personnels` VALUES (4, '赵六', '2021-02-22 09:10:10', 1);
-INSERT INTO `personnels` VALUES (5, '诸葛孔明', '2021-02-22 09:10:25', 1);
-INSERT INTO `personnels` VALUES (6, '上官翠花', '2021-02-22 09:10:42', 1);
+INSERT INTO `personnels` VALUES (1, '张三', '2021-02-20 14:58:24', 1, 0);
+INSERT INTO `personnels` VALUES (2, '李四', '2021-02-22 09:09:41', 1, 0);
+INSERT INTO `personnels` VALUES (3, '王五', '2021-02-22 09:09:58', 1, 0);
+INSERT INTO `personnels` VALUES (4, '赵六', '2021-02-22 09:10:10', 1, 0);
+INSERT INTO `personnels` VALUES (5, '诸葛孔明', '2021-02-22 09:10:25', 1, 0);
+INSERT INTO `personnels` VALUES (6, '上官翠花', '2021-02-22 09:10:42', 1, 1);
+INSERT INTO `personnels` VALUES (7, '李狗蛋', '2021-02-22 16:33:24', 2, 0);
+INSERT INTO `personnels` VALUES (8, '孙悟空', '2021-02-22 16:33:07', 2, 0);
+INSERT INTO `personnels` VALUES (9, '猪八戒', '2021-02-22 16:33:48', 2, 0);
+INSERT INTO `personnels` VALUES (10, '黄月英', '2021-02-22 16:52:58', 2, 1);
 
 -- ----------------------------
 -- Table structure for roles
