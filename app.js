@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // const bodyParser = require('body-parser');
 const { tokenMiddleware } = require('./middleware/authMiddleware.js');
+const cors = require("./middleware/CORSMiddleware.js");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -14,16 +15,8 @@ const jobRouter = require('./routes/job');
 
 var app = express();
 
-app.all('*', function(req, res, next) {
-  //设为指定的域
-  res.header('Access-Control-Allow-Origin', "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header("X-Powered-By", ' 3.2.1');
-  next();
-});
+//解决跨域
+app.use(cors)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
