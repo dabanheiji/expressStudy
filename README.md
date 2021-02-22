@@ -2,7 +2,7 @@
 
 # expressStudy
 
-这是本人学习express的一个仓库，默认启动在3000端口
+这是本人学习express的一个仓库，默认启动在3000端口，本项目并未做跨域处理，如使用vue/cli可直接将`vue.config.js`文件复制到项目根目录并重启项目通过反向代理解决跨域问题。
 
 ```
 npm install  //安装依赖

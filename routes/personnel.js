@@ -38,6 +38,29 @@ router.get('/getPersonnels', async function(req, res, next){
 	}
 })
 
-
+/**
+*添加员工
+*/
+router.post('/addPersonnel', async function(req, res, next){
+	const { 
+		personnel_name,
+		job_id
+	} = req.body;
+	if(personnel_name && job_id){
+		const sql = `insert into personnels(personnel_name, job_id) values('${personnel_name}', ${job_id});`;
+		const result = await db(sql);
+		if(result){
+			res.json({
+				code: 200,
+				message:"添加成功"
+			})
+		}
+	}else{
+		res.json({
+			code: 400,
+			message:"参数错误"
+		})
+	}
+})
 
 module.exports = router;
