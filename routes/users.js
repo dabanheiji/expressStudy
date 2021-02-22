@@ -1,7 +1,7 @@
 var express = require('express');
 const md5 = require('js-md5');
 const db = require('../utils/db.js');
-const { createToken } = require('../utils/auth.js');
+const { createToken, decodeToken } = require('../utils/auth.js');
 const { tokenMiddleware } = require('../middleware/authMiddleware.js');
 
 var router = express.Router();
@@ -14,13 +14,15 @@ var router = express.Router();
 router.post('/login', async function(req, res, next) {
 	const { username, password } = req.body;
 	if(username && password){
-		const sql = `select id,pwd from users where username = '${username}';`;
+		const sql = `select id,pwd,roles.role_id,role_name from users inner join roles on users.role_id = roles.role_id where username = '${username}';`;
 		const result = await db(sql);
 		if(result.length){
 			if(md5(password) === result[0].pwd){
 				const origin = {
 					username,
-					id: result[0].id
+					id: result[0].id,
+					role_id: result[0].role_id,
+					role_name: result[0].role_name
 				}
 				const token = createToken(origin);
 				res.json({
@@ -75,6 +77,19 @@ router.post('/register', async function (req, res, next) {
 			message:"参数有误"
 		});
 	}
+})
+
+/**
+*获取用户信息
+*/
+router.get('/getUserInfo', tokenMiddleware , async function(req, res, next){
+	const { token } = req.headers;
+	const userInfo = decodeToken(token);
+	res.json({
+		code: 200,
+		data: userInfo,
+		message:"获取用户信息成功"
+	})
 })
 
 
