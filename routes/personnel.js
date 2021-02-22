@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const db = require('../utils/db.js');
+const { createTime, formatDate } = require('../utils/date.js');
 const { tokenMiddleware } = require('../middleware/authMiddleware.js');
 
 /**
@@ -18,6 +19,10 @@ router.get('/getPersonnels', async function(req, res, next){
 			total: total[0]['count(*)']
 		}
 		if(result){
+			result.forEach(item => {
+				item.sex = item.sex === 0 ? '男' : '女';
+				item.create_time = formatDate(item.create_time);
+			})
 			res.json({
 				code: 200,
 				data: result,
@@ -44,10 +49,12 @@ router.get('/getPersonnels', async function(req, res, next){
 router.post('/addPersonnel', async function(req, res, next){
 	const { 
 		personnel_name,
+		sex,
 		job_id
 	} = req.body;
-	if(personnel_name && job_id){
-		const sql = `insert into personnels(personnel_name, job_id) values('${personnel_name}', ${job_id});`;
+	if(personnel_name && job_id && sex){
+		const create_time = createTime();
+		const sql = `insert into personnels(personnel_name, job_id, create_time, sex) values('${personnel_name}', ${job_id}, '${create_time}', ${sex});`;
 		const result = await db(sql);
 		if(result){
 			res.json({

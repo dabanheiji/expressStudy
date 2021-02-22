@@ -4,6 +4,8 @@
 
 这是本人学习express的一个仓库，默认启动在3000端口，本项目并未做跨域处理，如使用vue/cli可直接将`vue.config.js`文件复制到项目根目录并重启项目通过反向代理解决跨域问题(2021-02-22已添加跨域中间件)。
 
+拉取代码后请运行一次`expressdb.sql`文件以确保数据库表结构的同步，可在`config/config.js`中修改数据库配置
+
 ```
 npm install  //安装依赖
 npm run dev  //启动项目
@@ -311,4 +313,33 @@ npm run dev  //启动项目
   }
   ```
   
+  ### 添加员工
   
+  - 接口地址
+  
+    ```
+    /api/personnel/addPersonnel
+    ```
+  
+  - 请求方式
+  
+    POST
+  
+  - 入参
+  
+    | 字段           | 类型   | 说明      | 必传 |
+    | -------------- | ------ | --------- | ---- |
+    | personnel_name | string | 员工姓名  | true |
+    | job_id         | number | 员工职位  | true |
+    | sex            | number | 0 男，1女 | true |
+  
+  - 出参
+  
+    ```
+    {
+        code: 200,
+        message:"添加成功"
+    }
+    ```
+  
+    
