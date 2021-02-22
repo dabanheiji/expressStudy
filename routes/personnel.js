@@ -6,15 +6,15 @@ const { tokenMiddleware } = require('../middleware/authMiddleware.js');
 *查询员工列表
 */
 router.get('/getPersonnels', async function(req, res, next){
-	const { pageSize, pageNum } = req.query;
-	if(pageNum && pageSize){
+	const { page_size, page_num } = req.query;
+	if(page_num && page_size){
 		let countSql = `select count(*) from personnels inner join jobs on personnels.job_id = jobs.job_id;`;
-		let sql = `select * from personnels inner join jobs on personnels.job_id = jobs.job_id limit ${ pageSize * (pageNum - 1)}, ${ pageSize };`;
+		let sql = `select * from personnels inner join jobs on personnels.job_id = jobs.job_id limit ${ page_size * (page_num - 1)}, ${ page_size };`;
 		const result = await db(sql);
 		const total = await db(countSql);
 		const page = {
-			pageNum,
-			pageSize,
+			page_num,
+			page_size,
 			total: total[0]['count(*)']
 		}
 		if(result){

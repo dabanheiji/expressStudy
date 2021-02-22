@@ -50,7 +50,7 @@ router.post('/login', async function(req, res, next) {
 *@params {String} username
 *@params {String} password
 */
-router.post('/register', async function (req, res, next) {
+router.post('/register',tokenMiddleware, async function (req, res, next) {
 	const { username, password } = req.body;
 	if(username && password){
 		const selectSql = `select id from users where username = '${username}';`;

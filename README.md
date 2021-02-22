@@ -37,30 +37,6 @@ npm run dev  //启动项目
 
 ## 接口文档
 
-### 注册接口
-
-- 接口地址
-
-  ```
-  /api/users/register
-  ```
-
-- 入参
-
-  | 字段     | 参数类型 | 说明   | 必传 |
-  | -------- | -------- | ------ | ---- |
-  | username | string   | 用户名 | true |
-  | password | string   | 密码   | true |
-
-- 出参
-
-  ```
-  {
-      "code": 200,
-      "message": "注册成功"
-  }
-  ```
-
 ### 登录接口
 
 - 接口地址
@@ -69,6 +45,10 @@ npm run dev  //启动项目
   /api/users/login
   ```
 
+- 请求方式
+
+  POST
+  
 - 入参
 
   | 字段     | 参数类型 | 说明   | 必传 |
@@ -86,6 +66,34 @@ npm run dev  //启动项目
   }
   ```
 
+### 添加管理员接口
+
+- 接口地址
+
+  ```
+  /api/users/register
+  ```
+
+- 请求方式
+
+  POST
+  
+- 入参
+
+  | 字段     | 参数类型 | 说明   | 必传 |
+  | -------- | -------- | ------ | ---- |
+  | username | string   | 用户名 | true |
+  | password | string   | 密码   | true |
+
+- 出参
+
+  ```
+  {
+      "code": 200,
+      "message": "注册成功"
+  }
+  ```
+
 ### 获取用户信息
 
 - 接口地址
@@ -94,7 +102,11 @@ npm run dev  //启动项目
   /api/users/getUserInfo
   ```
 
-- 入参无，需在请求头携带token
+- 请求方式
+
+  GET
+
+- 入参无
 
 - 出参
 
@@ -121,6 +133,10 @@ npm run dev  //启动项目
   /api/role/setUserRole
   ```
 
+- 请求方式
+
+  POST
+  
 - 入参
 
   | 字段    | 类型   | 说明           | 必传 |
@@ -137,6 +153,120 @@ npm run dev  //启动项目
   }
   ```
 
+### 获取职位列表
+
+- 接口地址
+
+  ```
+  /api/job/getJobList
+  ```
+
+- 请求方式
+
+  GET
+
+- 入参 无
+
+- 出参
+
+  ```
+  {
+      "code": 200,
+      "data": [
+          {
+              "job_id": 1,
+              "job_name": "web大前端",
+              "deleted": 0
+          },
+          {
+              "job_id": 2,
+              "job_name": "php后端开发",
+              "deleted": 0
+          }
+      ],
+      "message": "请求成功"
+  }
+  ```
+
+### 添加职位
+
+- 接口地址
+
+  ```
+  /api/job/addJob
+  ```
+
+- 请求方式
+
+  POST
+
+- 入参
+
+  | 字段     | 类型   | 说明     | 必传 |
+  | -------- | ------ | -------- | ---- |
+  | job_name | string | 职位名称 | true |
+
+- 出参
+
+  ```
+  {
+      code: 200,
+      message:"添加成功"
+  }
+  ```
+
+  
+
+### 删除岗位
+
+- 接口地址
+
+  ```
+  /api/job/delJob
+  ```
+
+- 请求方式
+
+  POST
+
+- 入参
+
+  | 字段    | 类型               | 说明                                     | 必传 |
+  | ------- | ------------------ | ---------------------------------------- | ---- |
+  | job_ids | string \|\| number | 删除职位id，批量删除中间使用英文逗号隔开 | true |
+
+- 出参
+
+  ```
+  {
+      code: 200,
+      message:"删除成功"
+  }
+  ```
+
+  
+
+### 修改职位
+
+- 接口地址
+
+  ```
+  /api/job/setJob
+  ```
+
+- 请求方式
+
+  POST
+
+- 入参
+
+  | 字段     | 类型   | 说明             | 必传 |
+  | -------- | ------ | ---------------- | ---- |
+  | job_id   | number | 职位id           | true |
+  | job_name | string | 修改后的职位名称 | true |
+
+  
+
 ### 获取员工列表
 
 - 接口地址
@@ -145,12 +275,16 @@ npm run dev  //启动项目
   /api/personnel/getPersonnels
   ```
 
+- 请求方式
+
+  GET
+  
 - 入参
 
   | 字段     | 类型   | 说明         | 必传 |
   | -------- | ------ | ------------ | ---- |
-  | pageNum  | number | 当前页       | true |
-  | pageSize | number | 每页数据条数 | true |
+  | page_num  | number | 当前页       | true |
+  | page_size | number | 每页数据条数 | true |
 
   
 

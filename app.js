@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const personnelRouter = require('./routes/personnel');
 const roleRouter = require('./routes/role');
+const jobRouter = require('./routes/job');
 
 var app = express();
 
@@ -26,7 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/personnel',tokenMiddleware, personnelRouter);
-app.use('/api/role',tokenMiddleware ,roleRouter);
+app.use('/api/role',tokenMiddleware, roleRouter);
+app.use('/api/job',tokenMiddleware, jobRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

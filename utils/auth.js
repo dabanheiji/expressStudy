@@ -4,7 +4,7 @@ const secretKey = "secret key"; //密钥
 
 function createToken(origin){
 	const token = jwt.sign(origin, secretKey, {
-		expiresIn: 60 * 30,
+		expiresIn: 60 * 60 * 2, // 2h
 	})
 
 	return token;
