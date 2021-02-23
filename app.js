@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 const personnelRouter = require('./routes/personnel');
 const roleRouter = require('./routes/role');
 const jobRouter = require('./routes/job');
+const deptRouter = require('./routes/dept');
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/personnel',tokenMiddleware, personnelRouter);
 app.use('/api/role',tokenMiddleware, roleRouter);
 app.use('/api/job',tokenMiddleware, jobRouter);
+app.use('/api/dept',tokenMiddleware , deptRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -312,34 +312,209 @@ npm run dev  //启动项目
       "message": "查询成功"
   }
   ```
+
+### 添加员工
+
+- 接口地址
+
+  ```
+  /api/personnel/addPersonnel
+  ```
+
+- 请求方式
+
+  POST
+
+- 入参
+
+  | 字段           | 类型   | 说明      | 必传 |
+  | -------------- | ------ | --------- | ---- |
+  | personnel_name | string | 员工姓名  | true |
+  | job_id         | number | 员工职位  | true |
+  | sex            | number | 0 男，1女 | true |
+
+- 出参
+
+  ```
+  {
+      code: 200,
+      message:"添加成功"
+  }
+  ```
+
+### 删除员工
+
+- 接口地址
+
+  ```
+  /api/personnel/delPersonnel
+  ```
+
+- 请求方式
+
+  POST
+
+- 入参
+
+  | 字段          | 类型               | 说明                                 | 必传 |
+  | ------------- | ------------------ | ------------------------------------ | ---- |
+  | personnel_ids | string \|\| number | 删除员工id，批量删除使用英文逗号隔开 | true |
+
+- 出参
+
+  ```
+  {
+      code: 200,
+      message:"删除成功"
+  }
+  ```
+
+### 编辑员工信息
+
+- 接口地址
+
+  ```
+  /api/personnel/setPersonnel
+  ```
+
+- 请求方式
+
+  POST
+
+- 入参
+
+  | 字段         | 类型   | 说明   | 必传 |
+  | ------------ | ------ | ------ | ---- |
+  | personnel_id | number | 员工id | true |
+  | dept_id      | number | 部门id | true |
+  | job_id       | number | 岗位id | true |
+
+- 出参
+
+  ```
+  {
+      code:200,
+      message:"编辑成功"
+  }
+  ```
+
+### 查询部门列表
+
+- 接口地址
+
+  ```
+  /api/dept/getDeptList
+  ```
+
+- 请求方式
+
+  GET
+
+- 入参 无
+
+- 出参
+
+  ```
+  {
+      "code": 200,
+      "data": [
+          {
+              "dept_id": 1,
+              "dept_name": "研发组"
+          },
+          {
+              "dept_id": 2,
+              "dept_name": "人事管理部"
+          },
+          {
+              "dept_id": 3,
+              "dept_name": "综合部"
+          }
+      ],
+      "message": "查询成功"
+  }
+  ```
+
+### 添加部门
+
+- 接口地址
+
+  ```
+  /api/dept/addDept
+  ```
+
+- 请求方式
+
+  POST
+
+- 入参
+
+  | 字段      | 类型   | 说明     | 必传 |
+  | --------- | ------ | -------- | ---- |
+  | dept_name | string | 部门名称 | true |
+
+- 出参
+
+  ```
+  {
+      code: 200,
+      message: "添加成功"
+  }
+  ```
+
+### 删除部门
+
+- 接口地址
+
+  ```
+  /api/dept/delDept
+  ```
+
+- 请求方式
+
+  POST
+
+- 入参
+
+  | 字段     | 类型               | 说明                     | 必传 |
+  | -------- | ------------------ | ------------------------ | ---- |
+  | dept_ids | string \|\| number | 部门id，多个id用逗号隔开 | true |
+
+- 出参
+
+  ```
+  {	
+      code:200,
+      message:"删除成功"
+  }
+  ```
+
+### 编辑部门
+
+- 接口地址
+
+  ```
+  /api/dept/setDept
+  ```
+
+- 请求方式
+
+  POST
+
+- 入参
+
+  | 字段      | 类型   | 说明       | 必传 |
+  | --------- | ------ | ---------- | ---- |
+  | dept_id   | number | 部门id     | true |
+  | dept_name | string | 新部门名称 | true |
+
+- 出参
+
+  ```
+  {
+      code: 200,
+      message: "编辑成功"
+  }
+  ```
+
   
-  ### 添加员工
-  
-  - 接口地址
-  
-    ```
-    /api/personnel/addPersonnel
-    ```
-  
-  - 请求方式
-  
-    POST
-  
-  - 入参
-  
-    | 字段           | 类型   | 说明      | 必传 |
-    | -------------- | ------ | --------- | ---- |
-    | personnel_name | string | 员工姓名  | true |
-    | job_id         | number | 员工职位  | true |
-    | sex            | number | 0 男，1女 | true |
-  
-  - 出参
-  
-    ```
-    {
-        code: 200,
-        message:"添加成功"
-    }
-    ```
-  
-    
