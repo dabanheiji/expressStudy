@@ -6,7 +6,6 @@ function createToken(origin){
 	const token = jwt.sign(origin, secretKey, {
 		expiresIn: 60 * 60 * 2, // 2h
 	})
-
 	return token;
 }
 

@@ -11,7 +11,7 @@
  Target Server Version : 50646
  File Encoding         : 65001
 
- Date: 23/02/2021 17:10:00
+ Date: 03/03/2021 22:32:30
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ DROP TABLE IF EXISTS `depts`;
 CREATE TABLE `depts`  (
   `dept_id` int(11) NOT NULL AUTO_INCREMENT,
   `dept_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `deleted` int(10) NOT NULL COMMENT '0 未删除 ， 1删除',
+  `deleted` int(10) NOT NULL DEFAULT 0 COMMENT '0 未删除 ， 1删除',
   PRIMARY KEY (`dept_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
@@ -55,7 +55,7 @@ DROP TABLE IF EXISTS `jobs`;
 CREATE TABLE `jobs`  (
   `job_id` int(11) NOT NULL AUTO_INCREMENT,
   `job_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `deleted` int(1) NOT NULL COMMENT '0 未删除 1已删除',
+  `deleted` int(1) NOT NULL DEFAULT 0 COMMENT '0 未删除 1已删除',
   PRIMARY KEY (`job_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
@@ -75,14 +75,14 @@ CREATE TABLE `personnels`  (
   `create_time` datetime(0) NULL DEFAULT NULL,
   `job_id` int(11) NULL DEFAULT NULL,
   `sex` int(16) NOT NULL COMMENT '0 男  1女',
-  `deleted` int(11) NOT NULL COMMENT '0 未删除  1 删除',
+  `deleted` int(11) NOT NULL DEFAULT 0 COMMENT '0 未删除  1 删除',
   `dept_id` int(10) NULL DEFAULT NULL,
   PRIMARY KEY (`personnel_id`) USING BTREE,
   INDEX `job_id`(`job_id`) USING BTREE,
   INDEX `dept_id`(`dept_id`) USING BTREE,
   CONSTRAINT `personnels_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `jobs` (`job_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `personnels_ibfk_2` FOREIGN KEY (`dept_id`) REFERENCES `depts` (`dept_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of personnels
@@ -97,6 +97,7 @@ INSERT INTO `personnels` VALUES (7, '李狗蛋', '2021-02-22 16:33:24', 2, 0, 0,
 INSERT INTO `personnels` VALUES (8, '孙悟空', '2021-02-22 16:33:07', 2, 0, 0, 1);
 INSERT INTO `personnels` VALUES (9, '猪八戒', '2021-02-22 16:33:48', 2, 0, 0, 2);
 INSERT INTO `personnels` VALUES (10, '黄月英', '2021-02-22 16:52:58', 2, 1, 0, 1);
+INSERT INTO `personnels` VALUES (11, 'xxx', '2021-03-03 16:50:49', 1, 1, 0, NULL);
 
 -- ----------------------------
 -- Table structure for roles
